@@ -6,6 +6,7 @@ import (
 	"essential/util"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
+	"log"
 	"net/http"
 )
 
@@ -103,11 +104,23 @@ func Login(ctx *gin.Context) {
 			return
 		}
 	}
-	token := 111
+	token, err := common.ReleaseToke(user)
+	if err != nil {
+		ctx.JSON(500, gin.H{
+			"msg": "系统异常",
+		})
+		log.Printf("token generate error: %v", err)
+		return
+	}
 	ctx.JSON(http.StatusUnprocessableEntity, gin.H{
 		"code": 200,
 		"data": gin.H{"token": token},
 		"msg":  "登录成功",
 	})
 	return
+}
+
+func Info(ctx *gin.Context) {
+	user, _ := ctx.Get("user")
+	ctx.JSON(http.StatusOK, gin.H{"code": 200, "data": user})
 }
