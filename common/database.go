@@ -2,6 +2,8 @@ package common
 
 import (
 	"essential/model"
+	"fmt"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -9,7 +11,14 @@ import (
 var DB *gorm.DB
 
 func InitDB() *gorm.DB {
-	dsn := "root:root@tcp(127.0.0.1:3306)/essential?charset=utf8&parseTime=True&loc=Local"
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True&loc=Local",
+		viper.GetString("datasource.username"),
+		viper.GetString("datasource.password"),
+		viper.GetString("datasource.host"),
+		viper.GetString("datasource.port"),
+		viper.GetString("datasource.database"),
+		viper.GetString("datasource.charset"),
+	)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database, err:" + err.Error())
