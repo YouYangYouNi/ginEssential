@@ -11,9 +11,9 @@ import (
 func main() {
 	InitConfig()
 	r := gin.Default()
+	common.InitDB()
 	//注册路由
 	r = router.CollectRoute(r)
-	common.InitDB()
 	panic(r.Run()) // 监听并在 0.0.0.0:8080 上启动服务
 }
 
