@@ -32,14 +32,14 @@ func (c CategoryController) Create(ctx *gin.Context) {
 		panic(err)
 	}
 	if requestCategory.Name == "" {
-		response.ApiFail(ctx, gin.H{}, "分类名称必填")
+		response.ApiFail(ctx, gin.H{}, "分类名称必填，请修改")
 	}
 	c.DB.Create(&requestCategory)
 	response.ApiSuccess(ctx, gin.H{"category": requestCategory}, "")
 }
 
 func (c CategoryController) Update(ctx *gin.Context) {
-	panic("implement me")
+	panic("implement me ，请修改")
 }
 
 func (c CategoryController) Show(ctx *gin.Context) {
