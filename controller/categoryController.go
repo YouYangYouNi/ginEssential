@@ -43,7 +43,7 @@ func (c CategoryController) Update(ctx *gin.Context) {
 }
 
 func (c CategoryController) Show(ctx *gin.Context) {
-	panic("implement me")
+	panic("implement me，请修改")
 }
 
 func (c CategoryController) Delete(ctx *gin.Context) {
