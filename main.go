@@ -5,10 +5,16 @@ import (
 	"essential/router"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"log"
+	"net/http"
+	_ "net/http/pprof"
 	"os"
 )
 
 func main() {
+	go func() {
+		log.Println(http.ListenAndServe("0.0.0.0:8005", nil))
+	}()
 	InitConfig()
 	r := gin.Default()
 	common.InitDB()
