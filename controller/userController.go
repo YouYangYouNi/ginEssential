@@ -27,7 +27,7 @@ func Register(ctx *gin.Context) {
 	}
 
 	if len(password) < 6 {
-		response.ApiFail(ctx, nil, "密码小于6位")
+		response.ApiFail(ctx, nil, "密码小于6位，请修改")
 		return
 	}
 	if len(name) == 0 {
