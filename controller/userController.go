@@ -17,7 +17,7 @@ func Register(ctx *gin.Context) {
 	password := ctx.PostForm("password")
 
 	if len(telephone) != 11 {
-		response.ApiFail(ctx, nil, "手机号不正确请修改")
+		response.ApiFail(ctx, nil, "手机号不正确请fasdf 修改")
 		return
 	}
 	db := common.GetDB()
